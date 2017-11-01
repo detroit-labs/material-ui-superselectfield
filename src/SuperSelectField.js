@@ -702,7 +702,7 @@ SelectField.defaultProps = {
   },
   value: null,
   onChange: () => {},
-  clearAutocompleteUponSelection: false,
+  clearAutocompleteUponSelection: true,
   children: []
 }
 
