@@ -321,7 +321,9 @@ class SelectField extends Component {
         ? selectedItems.filter(obj => !areEqual(obj.value, selectedItem.value))
         : selectedItems.concat(selectedItem)
       this.setState({ selectedItems: updatedValues })
-      this.clearTextField(() => this.focusTextField())
+      if (this.props.clearAutocompleteUponSelection) {
+          this.clearTextField(() => this.focusTextField())
+      }
     } else {
       const updatedValue = areEqual(selectedItems, selectedItem) ? null : selectedItem
       this.setState({ selectedItems: updatedValue }, () => this.closeMenu())
@@ -674,7 +676,8 @@ SelectField.propTypes = {
   menuCloseButton: PropTypes.node,
   multiple: PropTypes.bool,
   disabled: PropTypes.bool,
-  onChange: PropTypes.func
+  onChange: PropTypes.func,
+  clearAutocompleteUponSelection: PropTypes.bool
 }
 
 SelectField.defaultProps = {
@@ -699,6 +702,7 @@ SelectField.defaultProps = {
   },
   value: null,
   onChange: () => {},
+  clearAutocompleteUponSelection: false,
   children: []
 }
 
